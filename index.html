@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Aklanon Speech to Text</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+		<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700|Droid+Sans+Mono" rel="stylesheet">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+		<!-- highlight-within-textarea CSS/JS -->
+		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
+		<script src="jquery.highlight-within-textarea.js"></script>
+
+		<!-- custom styles for highlight-within-textarea -->
+		<style>
+			.hwt-container {
+				background-color: #f8f9fa;
+			}
+
+			.hwt-content {
+				width: 760px;
+				height: 100px;
+				padding: 20px;
+				border: 1px solid #adb5bd;
+				color: inherit;
+				font: 18px/25px 'Droid Sans Mono', sans-serif;
+			}
+
+			.hwt-input:focus {
+				outline-color: #495057;
+			}
+
+			.hwt-content mark {
+				border-radius: 3px;
+				background-color: #d0bfff;
+			}
+
+			.hwt-content mark.red {
+				background-color: #ffc9c9;
+			}
+
+			.hwt-content mark.blue {
+				background-color: #a3daff;
+			}
+
+			.hwt-content mark.yellow {
+				background-color: #ffec99;
+			}
+		</style>
+
+		<!-- general styles to make this page look decent -->
+		<style>
+			* {
+				box-sizing: border-box;
+			}
+
+			body {
+				margin: 0;
+				padding: 0;
+				background-color: #E6E2C3;
+				font-family: 'Droid Sans Mono', sans-serif;
+			}
+			h3{
+				text-align: center;
+			}
+			.c {
+				display: inline-block;
+				margin-bottom: 5px;
+				padding: 10px 30px;
+				border-radius: 5px;
+				color: #f8f9fa;
+				background-color: #495057;
+				text-decoration: none;
+			}
+
+			section {
+				max-width: 800px;
+				margin: 40px auto;
+				padding: 0 20px;
+				font: 18px/1.4 'Open Sans', sans-serif;
+				
+			}
+
+			code {
+				padding: 0 5px;
+				font-family: 'Droid Sans Mono', sans-serif;
+				font-size: 16px;
+				background-color: #dee2e6;
+			}
+			button {
+				text-align: center;
+			}
+			/*script {
+				display: block;
+				margin-top: 10px;
+				padding-left: 15px;
+				border-left: 5px solid #adb5bd;
+				background-color: #e9ecef;
+				white-space: pre-wrap;
+				font: 14px/1.5 'Droid Sans Mono', sans-serif;
+			}*/
+			header{
+				margin: 0;
+				padding: 50px;
+				background-color: darkcyan;
+				color: white;
+				text-align: center;
+				font-size: 30px;
+			}
+			.tae{
+				text-align: center;
+			}
+			.column {
+ 			 float: left;
+  			width: 33.33%;
+  			padding: 10px;
+  			height: 150px; /* Should be removed. Only for demonstration */
+			}
+			.row{
+				color: dimgray;
+			}
+			.navbar ul {
+ 			 margin: 0 5% 0 0;
+ 			 padding: 0;
+  			list-style: none;
+  			text-align: right;
+			}
+			.navbar {
+ 			 overflow: hidden;
+  			background-color: darkcyan;
+  			position: fixed;
+  			top: 0;
+			left: 0;
+  			width: 100%;
+			}
+			.navbar a {
+  			float: right;
+  			display: block;
+  			color: #f2f2f2;
+  			text-align: center;
+  			padding: 12px 18px;
+  			text-decoration: none;
+  			font-size: 17px;
+			}
+			.navbar a:hover {
+  			background: #ddd;
+ 			 color: black;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<header id="home">
+			<h1>AKLANON SPEECH TO TEXT</h1>
+			<div class="navbar">
+				<ul>
+					<li><a id="c" href="#contact">Contact Us</a></li>
+					<li><a id="c" href="#about">About</a></li>
+					<li><a id="c" href="#home">Home</a></li>
+				</ul>
+			</div>
+		</header>
+		<article>
+			<div class="coll">
+				<h3 style="color:dimgray";">Instruction</h3>
+				<div class="row">
+					<div class="column">
+					  <h3></h3>
+					  <p>Step1: Click on the start button to start recording</p>
+					</div>
+					<div class="column">
+					  <h2></h2>
+					  <p>Step2: Click on copy to transfer to the second box</p>
+					</div>
+					<div class="column">
+					  <h2></h2>
+					  <p>Step3: Click on the box and press space to see highlighted word</p>
+					</div>
+				  </div>
+
+			</div>
+		</article>
+		<section id="Home">
+			<div class="tae">
+			<button id="start-btn" class="btn btn-light btn-lg btn-block">
+					  Start
+					</button>
+					<p id="instructions">Press the button</p>
+	
+		  <textarea rows="4" cols="50" onkeyup=Copydata() name="" id="text-output" class="form-control form-control-lg"placeholder="Click the button to start"></textarea>
+			
+		<br>
+		<button id="btn" type="button" onclick="Copydata()">Copy</button>
+		</div>
+
+		
+		<br>
+			<textarea id="two" class="string-example"></textarea>
+			<script>
+				$('.string-example').highlightWithinTextarea({
+					highlight: /siyam|dasig|samad|agto|lantaw|adto|hapon|gabi|adlao|ngalan|salamat|pasensya|mayad|indi|basi|balay|dalagan|tikang|pungko|lubog|lapit|layo|mahal|kaya|langoy|liko|lupad|abante|suksok|kamang|sampal|habol|lagas|dagum|birahan|itom|puti|abaga|tindog|hampang|tuslok/gi	
+				});
+					function Copydata(){
+  					$("#two").val($("#text-output").val());
+					function erase(){
+						document.getElementById("two").value = ""
+					}
+					}
+			</script>
+	</section>
+	<section class="about" id="about">
+		<h3>ABOUT</h3>
+		<p><b>Aklanon Speech to Text transcriber</b> is a free and realtime website using voice recognition to transcribe from audio recordings to readable text. It is an accessible site that welcomes all users who wants to know Aklanon words. However, only limited aklanon words can offer of this website. 
+
+			<br><br>To begin with, first click the start button for recording and as soon as the user taps the copy button after recording, words will be display. 
+			
+			<br>It has an hassle free features that easy to use because of its simpleness and a user friendly visuals to guide the user to its next step. 
+			
+			<br><br>It contains most important pages, the homepage which is the website's primary focuses,  as well as the pages for about us and contact us for aklanon speech to text transcriber informations.</p>
+
+
+	</section>
+	<section class="contacts" id="contact">
+	<div class="coll" id="titletxt">
+		<h3>Meet The Team</h3>
+		<div class="row">
+			<div class="column">
+				<div class="card">
+					<img src="images/ace.jpeg" alt="" style="width: 150px;height: auto;padding-top: 10px;border-radius: 50%;transition: all 0.9s ease 0s">
+					<h3 class="name">Ace Leo Velasco</h3>
+					<a href="https://www.facebook.com/EysLeyu" target="_blank"><i class="fa fa-facebook"></i></a>
+			</div>
+		</div>
+		<div class="column">
+			<div class="card">
+				<img src="images/gerry.jpg" alt="" style="width: 150px;height: auto;padding-top: 10px;border-radius: 50%;transition: all 0.9s ease 0s">
+				<h3 class="name">Gerry Dujali</h3>
+				<a href="https://www.facebook.com/Smallpinktinyturtle" target="_blank"><i class="fa fa-facebook"></i></a>
+		
+		</div>
+		</div>
+		<div class="column">
+			<div class="card">
+				<img src="images/rex.jpeg" alt="" style="width: 150px;height: auto;padding-top: 10px;border-radius: 50%;transition: all 0.9s ease 0s">
+				<h3 class="name">Rexele Legaspi</h3>
+				<a href="https://facebook.com/rexelle.legaspi15" target="_blank"><i class="fa fa-facebook"></i></a>
+				
+		</div>
+		</div>
+			<style>
+				.fa {
+				  padding: 9px;
+				  font-size: 20px;
+				  width: 30px;
+				  text-align: center;
+				  text-decoration: none;
+				  margin: auto;
+				  border-radius: 50%;
+				}
+				
+				.fa:hover {
+					opacity: 0.7;
+				}
+				
+				.fa-facebook {
+				  background: #3B5998;
+				  color: white;
+				}
+
+				#contact{
+					width: 100%;
+					padding: 10px 10px 130px ;
+					background-color: darkcyan;
+				}
+				#titletxt{
+					text-align: center;
+					padding-bottom: 100px;
+				}
+				#titletxt p{
+					margin: auto;
+					font-size: 15px;
+					color: #009688;
+					font-weight: bold;
+					position: relative;
+					z-index: 1;
+					display: inline-block;
+					}
+					#titletxt p::after{
+	content: '';
+	width: 50px;
+	height: 35px;
+	background: linear-gradient(#019587, #fff);
+	position: absolute;
+	top: -20px;
+	left: 0;
+	z-index: -1;
+	transform: rotate(10deg);
+	border-top-left-radius: 35px;
+	border-bottom-right-radius: 35px;
+
+}
+#titletxt h1{
+	font-size: 30px;
+}
+#titletxt h1::after{
+	content: '';
+	height: 5px;
+	width: 100px;
+	background-color: #c4d156;
+	border-radius: 25px;
+	display: block;
+	margin: auto;
+}
+
+
+.row::after{
+	content: "";
+	display: table;
+	clear: both;
+}
+
+.card{
+	box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+	max-width: 270px;
+	margin: auto;
+	background-color: #f1ecd4;
+	text-align: center;
+	border-radius: 15px;
+	padding-bottom: 15px;
+}
+.name{
+	color: black;
+	font-size: 16px;
+}
+.title{
+	color: gray;
+	font-size: 14px;
+}
+
+			</style>
+	</section>
+	<div class="footer">
+		<p>© All Rights Reserved 2022</p>
+	  </div>
+	  <style>
+		
+.footer {
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: darkgray;
+  text-align: center
+}
+
+	  </style>
+	
+
+
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+  crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+  <script src="script.js"></script>
+	</body>
+</html>
