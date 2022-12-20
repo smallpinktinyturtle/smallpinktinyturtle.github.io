@@ -10,6 +10,8 @@
 
 		<!-- highlight-within-textarea CSS/JS -->
 		<link href="jquery.highlight-within-textarea.css" rel="stylesheet">
+		<!--icons-->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<script src="jquery.highlight-within-textarea.js"></script>
 
 		<!-- custom styles for highlight-within-textarea -->
@@ -58,7 +60,7 @@
 			body {
 				margin: 0;
 				padding: 0;
-				background-color: #E6E2C3;
+				background-color: #FAEAB1;
 				font-family: 'Droid Sans Mono', sans-serif;
 			}
 			h3{
@@ -103,7 +105,7 @@
 			header{
 				margin: 0;
 				padding: 50px;
-				background-color: darkcyan;
+				background-color:  darkcyan;
 				color: white;
 				text-align: center;
 				font-size: 30px;
@@ -128,7 +130,7 @@
 			}
 			.navbar {
  			 overflow: hidden;
-  			background-color: darkcyan;
+  			background-color:  #E6E2C3;
   			position: fixed;
   			top: 0;
 			left: 0;
@@ -137,7 +139,7 @@
 			.navbar a {
   			float: right;
   			display: block;
-  			color: #f2f2f2;
+  			color: #000;
   			text-align: center;
   			padding: 12px 18px;
   			text-decoration: none;
@@ -147,16 +149,30 @@
   			background: #ddd;
  			 color: black;
 			}
-			
+			.buton{
+				text-align: center;
+			}
+			.start-btn:hover{
+				cursor: pointer;
+			}
+			i:hover{
+				cursor: pointer;
+				color: #009688;
+			}
+			.about{
+				border: dashed 4px #000;
+  padding: 20px;
+			}
 		</style>
 	</head>
 	<body>
 		<header id="home">
-			<h1>AKLANON SPEECH TO TEXT</h1>
+			<h1 style="color: #000;">AKLANON SPEECH TO TEXT</h1>
 			<div class="navbar">
 				<ul>
 					<li><a id="c" href="#contact">Contact Us</a></li>
 					<li><a id="c" href="#about">About</a></li>
+					<li><a target="_blank" id="c" href="dict.html">Dictionary</a></li>
 					<li><a id="c" href="#home">Home</a></li>
 				</ul>
 			</div>
@@ -164,10 +180,12 @@
 		
 		</article>
 		<section id="Home">
-			<button style="display: block; margin: 0 auto;" id="start-btn" class="btn btn-light btn-lg btn-block">
-					  Start
+			<div class="buton">
+			<button style="display: inline; margin: auto; font-size: 24px; border-radius: 50%;" id="start-btn" class=""><i class="fa fa-microphone"></i>
 					</button>
+					<button style="border-radius: 50%;font-size: 24px; margin: auto; display: inline;" type="submit" onClick="location.href=location.href"><i class="fa fa-refresh"></i></button>
 					<p id="instructions" style="text-align: center;">Press the button</p>
+				</div>
 					<textarea id="text-output" class="string-example"></textarea>
 			<script>
 				$('.string-example').highlightWithinTextarea({
@@ -189,15 +207,14 @@
 		<br>
 			
 	</section>
-	<section class="about" id="about">
-		<h3>ABOUT</h3>
-		<p><b>Aklanon Speech to Text transcriber</b> is a free and realtime website using voice recognition to transcribe from audio recordings to readable text. It is an accessible site that welcomes all users who wants to know Aklanon words. However, only limited aklanon words can offer of this website. 
+	<section style=" text-align: center;;" class="about" id="about">
+		<h3 style="font-size: 20px;">ABOUT</h3>
+		<p style="font-size:16px;"><b>Aklanon Speech to Text transcriber</b> is a free and realtime website using voice recognition to transcribe from audio recordings to readable text. It is an accessible site that welcomes all users who wants to know Aklanon words. However, only limited aklanon words can offer of this website. 
 
-			<br><br>To begin with, first click the start button for recording and as soon as the user taps the copy button after recording, words will be display. 
+			<br>To begin with, first click the start button for recording and as soon as the user taps the copy button after recording, words will be display. 
 			
 			<br>It has an hassle free features that easy to use because of its simpleness and a user friendly visuals to guide the user to its next step. 
-			
-			<br><br>It contains most important pages, the homepage which is the website's primary focuses,  as well as the pages for about us and contact us for aklanon speech to text transcriber informations.</p>
+			</p>
 
 
 	</section>
